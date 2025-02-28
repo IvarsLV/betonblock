@@ -2,17 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Глобальные переменные */
-:root {
-  --background: #f9fafb;
-  --text-primary: #111827;
-  --accent: #22c55e;
-  --hover-accent: #a7f3d0;
-}
-
 /* Основные стили */
 body {
-  @apply bg-[var(--background)] text-[var(--text-primary)] font-sans;
+  @apply bg-background text-textPrimary font-sans static z-0;
 }
 
 /* Анимация появления */
@@ -22,3 +14,104 @@ body {
 .fade-in.visible {
   @apply opacity-100;
 }
+
+@layer utilities {
+  .bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25vw; /* Динамический размер */
+    font-family: Impact, sans-serif;
+    font-weight: 700;
+    line-height: 0.81;
+    text-align: center;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: -10;
+    white-space: nowrap;
+  }
+
+  .bg-text span {
+    display: inline-block;
+    will-change: transform;
+  }
+
+  /* Анимации */
+  @keyframes float-left {
+    0% { transform: translateX(15%); }
+    50% { transform: translateX(-15%); } /* Движение влево */
+    100% { transform: translateX(15%); }
+  }
+
+  @keyframes float-right {
+    0% { transform: translateX(-15%); }
+    50% { transform: translateX(15%); } /* Движение вправо */
+    100% { transform: translateX(-15%); }
+  }
+
+  .bg-text .accent {
+    @apply text-accent;
+    animation: float-left 90s ease infinite; /* Плавное движение влево */
+  }
+
+  .bg-text .primary {
+    @apply text-textPrimary;
+    animation: float-right 90s ease infinite; /* Плавное движение вправо */
+  }
+}
+
+  .bg-text span {
+    display: inline-block;
+  }
+
+  .bg-text .accent {
+    @apply text-accent;
+  }
+
+  .bg-text .primary {
+    @apply text-textPrimary;
+  }
+
+
+  @layer utilities {
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    .animate-fade-in {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+  }
+
+  @layer utilities {
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    .animate-slide-down {
+      animation: slideDown 0.8s ease-out forwards;
+    }
+    .toggle-btn{
+      @apply [&>div::before]:translate-y-0 [&>div::before]:rotate-45
+             [&>div::after]:translate-y-0 [&>div::after]:-rotate-45
+             [&>div]:bg-transparent [&>div]:-rotate-[720deg]
+    }
+
+
+  }
+

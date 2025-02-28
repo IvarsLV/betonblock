@@ -1,12 +1,214 @@
 ---
 import Button from './ui/Button.astro';
 ---
-<header class="bg-white shadow py-4">
-  <nav class="container mx-auto flex justify-between items-center">
-    <a href="/" class="text-xl font-bold">Astro Template</a>
+<header class="fixed top-0 left-0 right-0 z-50 bg-white py-4 opacity-0 -translate-y-10 animate-slide-down transition-all duration-300">
+  <nav class="container mx-auto flex justify-between items-center transition-all duration-300" aria-label="Galvenā navigācija" id="main-nav">
+    <a href="/" class="focus:outline-none focus:ring-2 focus:ring-accent">
+      <img src="/logo.png" alt="Betonblock Logo" class="max-h-20 transition-all duration-300" id="logo"/>
+    </a>
     <div class="space-x-4">
-      <Button href="/about">About</Button>
-      <Button href="/contacts">Contact</Button>
+      <nav>
+        <button 
+          id="hamburdeg-button" 
+          class="text-3xl mr-auto focus:text-accent cursor-pointer md:hidden relative w-8 h-8"
+          aria-label="Atvērt izvēlni"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <div class="bg-black w-8 h-1 rounded absolute top-4 -mt-0.5 
+           transition-all duration-300
+           before:content-[''] before:bg-black before:w-8 
+           before:h-1 before:rounded before:absolute
+           before:-translate-x-4 before:-translate-y-3 
+           before:transition-all before:duration-300
+           after:content-[''] after:bg-black after:w-8 
+           after:h-1 after:rounded after:absolute
+           after:-translate-x-4 after:translate-y-3
+           after:transition-all after:duration-300 z-50"></div>
+        </button>
+        <ul class="md:flex space-x-10 hidden" role="menubar">
+          <li role="none"><a href="/" class="hover:text-hoverAccent transition-colors duration-300 focus:outline-none " role="menuitem">Sākums</a></li>
+          <li role="none"><a href="/par-mums" class="hover:text-hoverAccent transition-colors duration-300 focus:outline-none " role="menuitem">Par mums</a></li>
+          <li role="none"><a href="/pakalpojumi" class="hover:text-hoverAccent transition-colors duration-300 focus:outline-none  " role="menuitem">Pakalpojumi</a></li>
+          <li role="none"><a href="/materiali" class="hover:text-hoverAccent transition-colors duration-300 focus:outline-none  " role="menuitem">Materiāli</a></li>
+          <li role="none"><a href="/kontakti" class="hover:text-hoverAccent transition-colors duration-300 focus:outline-none  " role="menuitem">Kontakti</a></li>
+        </ul>
+      </nav>
     </div>
   </nav>
 </header>
+
+<nav 
+  id="mobile-menu" 
+  class="absolute mt-24 top-69 bg-white w-full text-5xl flex flex-col justify-center z-40 origin-top animate-open-menu hidden"
+  aria-label="Mobilā izvēlne"
+>
+  <ul class="flex gap-8 flex-col min-h-screen items-center mt-12 py-8" role="menu">
+    <li role="none"><a href="/" class="w-full text-center py-6 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent" role="menuitem">Sākums</a></li>
+    <li role="none"><a href="/par-mums" class="w-full text-center py-6 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent" role="menuitem">Par mums</a></li>
+    <li role="none"><a href="/pakalpojumi" class="w-full text-center py-6 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent" role="menuitem">Pakalpojumi</a></li>
+    <li role="none"><a href="/materiali" class="w-full text-center py-6 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent" role="menuitem">Materiāli</a></li>
+    <li role="none"><a href="/kontakti" class="w-full text-center py-6 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent" role="menuitem">Kontakti</a></li>
+  </ul>
+</nav>
+
+<script>
+  function scrollToSection(sectionId: string) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const header = document.querySelector('header');
+      const headerHeight = header ? header.offsetHeight : 0;
+      const sectionPosition = section.getBoundingClientRect().top + window.pageYOffset;
+      const extraPadding = 32;
+      
+      window.scrollTo({
+        top: sectionPosition - headerHeight - extraPadding,
+        behavior: 'smooth'
+      });
+      
+      window.history.pushState({}, '', `/${sectionId}`);
+    }
+  }
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    window.history.pushState({}, '', '/');
+  }
+
+  const initApp = () => {
+    const hamburgerButton = document.getElementById('hamburdeg-button') as HTMLButtonElement | null;
+    const mobileMenu = document.getElementById('mobile-menu') as HTMLElement | null;
+    const desktopLinks = document.querySelectorAll('.md\\:flex a[href^="/"]');
+    const mobileLinks = document.querySelectorAll('#mobile-menu a[href^="/"]');
+
+    if (!hamburgerButton || !mobileMenu) return;
+
+    let isMenuOpen = false;
+
+    const handleInitialUrl = () => {
+      const path = window.location.pathname;
+      if (path !== '/') {
+        const sectionId = path.replace('/', '');
+        setTimeout(() => {
+          scrollToSection(sectionId);
+        }, 100);
+      }
+    };
+
+    const toggleMenu = () => {
+      isMenuOpen = !isMenuOpen;
+      mobileMenu.classList.toggle('hidden');
+      mobileMenu.classList.toggle('flex');
+      hamburgerButton.classList.toggle('toggle-btn');
+      hamburgerButton.setAttribute('aria-expanded', isMenuOpen.toString());
+      hamburgerButton.setAttribute('aria-label', isMenuOpen ? 'Aizvērt izvēlni' : 'Atvērt izvēlni');
+    }
+
+    const closeMenu = () => {
+      if (isMenuOpen) {
+        isMenuOpen = false;
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+        hamburgerButton.classList.remove('toggle-btn');
+        hamburgerButton.setAttribute('aria-expanded', 'false');
+        hamburgerButton.setAttribute('aria-label', 'Atvērt izvēlni');
+      }
+    }
+
+    hamburgerButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    desktopLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        if (href === '/') {
+          scrollToTop();
+          return;
+        }
+        const sectionId = href?.replace('/', '');
+        if (sectionId) {
+          scrollToSection(sectionId);
+        }
+      });
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        if (href === '/') {
+          closeMenu();
+          setTimeout(() => scrollToTop(), 300);
+          return;
+        }
+        const sectionId = href?.replace('/', '');
+        if (sectionId) {
+          closeMenu();
+          setTimeout(() => scrollToSection(sectionId), 300);
+        }
+      });
+    });
+
+    window.addEventListener('popstate', () => {
+      const path = window.location.pathname;
+      if (path === '/') {
+        scrollToTop();
+      } else {
+        const sectionId = path.replace('/', '');
+        scrollToSection(sectionId);
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!isMenuOpen) return;
+      const target = e.target as HTMLElement;
+      if (!mobileMenu.contains(target) && !hamburgerButton.contains(target)) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        closeMenu();
+      }
+    });
+
+    handleInitialUrl();
+  }
+
+  document.addEventListener('DOMContentLoaded', initApp);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('header');
+    const nav = document.getElementById('main-nav');
+    const logo = document.getElementById('logo');
+
+    if (!header || !nav || !logo) return;
+
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+
+      if (currentScroll > 50) {
+        header.classList.add('py-0.5', 'shadow-sm');
+        header.classList.remove('py-4');
+        nav.classList.add('py-0.5');
+        logo.style.maxHeight = '40px';
+      } else {
+        header.classList.remove('py-0.5', 'shadow-sm');
+        header.classList.add('py-4');
+        nav.classList.remove('py-0.5');
+        logo.style.maxHeight = '80px';
+      }
+
+      lastScroll = currentScroll;
+    });
+  });
+</script>

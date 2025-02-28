@@ -1,11 +1,522 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
 import Button from "../components/ui/Button.astro";
+import MainLayout from "../layouts/MainLayout.astro";
 ---
+
 <MainLayout title="Главная">
-  <section class="text-center py-20">
-    <h1 class="text-h1 font-bold">Добро пожаловать в IPX</h1>
-    <p class="text-lg text-gray-600 mt-4 mb-12">Минималистичный Astro Starter</p>
-    <Button variant="primary" href="/">Начать</Button>
-  </section>
+  <main class="relative pt-24">
+    <!-- Hero секция -->
+    <section id="hero" class="min-h-[calc(100vh-5rem)] py-16 md:py-24 lg:py-32 container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+        <!-- Текстовый блок -->
+        <div class="flex-1 w-full lg:w-1/2 reveal-item">
+          <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-left mb-4 md:mb-6">
+            AUGSTAS KVALITĀTES <span class="text-accent">BETONS</span> UN <br class="hidden sm:block" /> 
+            <span class="text-accent">BŪVMATERIĀLI</span> JŪSU PROJEKTAM
+          </h1>
+          <p class="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed mb-8 md:mb-12 max-w-2xl">
+            Ražojam jebkuras markas betonu un piegādājam būvmateriālus privātiem un komerciāliem projektiem.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <Button 
+              href="/kontakti" 
+              variant="primary"
+              className="w-full sm:w-auto text-center justify-center"
+            >
+              Sazinies ar mums
+            </Button>
+            <Button 
+              href="/pakalpojumi" 
+              variant="secondary"
+              className="w-full sm:w-auto text-center justify-center"
+            >
+              Mūsu pakalpojumi
+            </Button>
+          </div>
+        </div>
+
+        <!-- Изображение -->
+        <div class="flex-1 w-full lg:w-1/2 reveal-item delay-300">
+          <div class="relative w-full aspect-square lg:aspect-[4/3]">
+            <img 
+              src="/img/hero.png" 
+              alt="Betonblock производство" 
+              class="w-full h-full object-cover rounded-lg shadow-xl rotate-0 hover:-rotate-2 transition-transform duration-300"
+              width="800"
+              height="600"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- О нас -->
+      <div id="par-mums" class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-20 reveal-item">
+          <span class="text-textPrimary">KAS IR</span> <span class="text-accent">BETONBLOCK?</span>
+        </h2>
+        <div class="flex flex-col lg:flex-row items-center gap-6 lg:gap-12">
+          <div class="flex-1 w-full lg:w-1/2 reveal-item delay-300">
+            <div class="relative">
+              <div class="absolute inset-0rounded-lg transform -rotate-3"></div>
+              <img 
+                src="/img/block512.png"
+                alt="Betonblock logo"
+                class="relative w-full max-w-md mx-auto transform rotate-0 transition-transform duration-300 hover:rotate-2"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="flex-1 w-full lg:w-2/3 reveal-item delay-500 ">
+            <div class= "bg-accent/25 hover:shadow-md p-6 mt-8 hover:shadow-accent/50 rounded-tr-3xl rounded-tl-3xl rounded-br-3xl">
+              <p class="text-base text-gray-700 leading-6 mb-3">
+                "Betonblock" kopš 2013. gada ieņem vadošās pozīcijas betona ražošanā Latgalē un ir viens no uzticamākajiem būvmateriālu piegādātājiem Latvijā. Mūsu rūpnīca Daugavpilī ir aprīkota ar modernām tehnoloģijām, kas ļauj ražot augstas kvalitātes betonu dažādiem projektiem — no privātu mājokļu pamatiem līdz lieliem industriālajiem objektiem. Stingrā kvalitātes kontrole garantē, ka katrs klients saņem uzticamu un drošu produktu.
+              </p>
+              <p class="text-base text-gray-700 leading-6 mb-3">
+                Papildus betonam mēs piedāvājam plašu būvmateriālu sortimentu, tostarp blokus, ķieģeļus, armatūru, smiltis un šķembas. Mūsu materiāli atbilst visiem standartiem un ir piemēroti gan mazām, gan lielām būvniecībām. Mēs nodrošinām ātru piegādi visā Latvijā, sadarbojoties ar uzticamiem loģistikas partneriem, lai katrs projekts tiktu apkalpots savlaicīgi.
+              </p>
+              <p class="text-base text-gray-700 leading-6">
+                "Betonblock" piedāvā ne tikai materiālus, bet arī pilnīgu atbalstu būvniecības projektos. Mēs sniedzam individuālu pieeju, elastīgus risinājumus un palīdzību katrā posmā — no idejas līdz projekta realizācijai. Izvēloties "Betonblock", jūs iegūstat augstu kvalitāti, uzticamību un partneri, kas atbalsta jūs visos jūsu būvniecības centienos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Преимущества и услуги -->
+    <section id="pakalpojumi" class="py-24">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-20 reveal-item">
+          <span class="text-textPrimary">MŪSU</span> <span class="text-accent">PAKALPOJUMI</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 reveal-item delay-300 ">
+          <!-- Транспортный бетон -->
+          <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Transportbetons</h3>
+            <p class="text-gray-600">Ražojam un piegādājam augstas kvalitātes transportbetonu visām būvniecības vajadzībām. Individuāla pieeja katram projektam.</p>
+          </div>
+
+          <!-- Железобетон -->
+          <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Dzelzsbetons</h3>
+            <p class="text-gray-600">Izgatavošana un piegāde dzelzsbetona konstrukcijām. Augsta izturība un ilgmūžība jūsu projektiem.</p>
+          </div>
+
+          <!-- Бетонные работы -->
+          <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Betona darbi</h3>
+            <p class="text-gray-600">Profesionāla betona iestrāde un apdare. Pamatu, grīdu un citu konstrukciju izbūve ar garantiju.</p>
+          </div>
+
+          <!-- Сыпучие материалы -->
+          <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Beramie materiāli</h3>
+            <p class="text-gray-600">Plašs būvmateriālu klāsts - smiltis, grants, šķembas. Piegāde visā Latvijā.</p>
+          </div>
+
+          <!-- Индивидуальные решения -->
+          <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Individuāli risinājumi</h3>
+            <p class="text-gray-600">Piegādājam jebkurus būvmateriālus pēc pieprasījuma. Elastīga pieeja un konkurētspējīgas cenas.</p>
+          </div>
+
+          <!-- Качество -->
+          <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Garantēta kvalitāte</h3>
+            <p class="text-gray-600">Visi materiāli atbilst ES standartiem. Regulāra kvalitātes kontrole un sertificēti produkti.</p>
+          </div>
+        </div>
+
+     
+        <!-- Полный список материалов -->
+        <h2 id="materiali" class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-20 reveal-item">
+          <span class="text-textPrimary">MŪSU</span> <span class="text-accent">MATERIĀLI</span>
+        </h2>
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 reveal-item delay-300">
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <!-- Бетон -->
+              <div class="space-y-3">
+                <h4 class="text-lg font-semibold border-b-2 border-accent/30 pb-2">Betons</h4>
+                <ul class="space-y-1 text-base text-gray-600">
+                  <li class="flex items-center">
+                    <span class="w-2 h-2 bg-accent/40 rounded-full mr-2"></span>
+                    C8/10 - C35/45 markas
+                  </li>
+                  <li class="flex items-center">
+                    <span class="w-2 h-2 bg-accent/40 rounded-full mr-2"></span>
+                    Hidrofobais betons
+                  </li>
+                  <li class="flex items-center">
+                    <span class="w-2 h-2 bg-accent/40 rounded-full mr-2"></span>
+                    Salizturīgais betons
+                  </li>
+                  <li class="flex items-center">
+                    <span class="w-2 h-2 bg-accent/40 rounded-full mr-2"></span>
+                    Vieglais betons
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Сыпучие материалы -->
+              <div class="space-y-3">
+                <h4 class="text-lg font-semibold border-b-2 border-accent/30 pb-2">Beramie materiāli</h4>
+                <ul class="space-y-1 text-base text-gray-600">
+                  <li class="flex items-center">
+                    <span class="w-2 h-2 bg-accent/40 rounded-full mr-2"></span>
+                    Būvniecības smiltis
+                  </li>
+                  <li class="flex items-center">
+                    <span class="w-2 h-2 bg-accent/40 rounded-full mr-2"></span>
+                    Granīta/Dolomīta šķembas
+                  </li>
+                  <li class="flex items-center">
+                    <span class="w-2 h-2 bg-accent/40 rounded-full mr-2"></span>
+                    Dekoratīvie materiāli
+                  </li>
+                  <li class="flex items-center">
+                    <span class="w-2 h-2 bg-accent/40 rounded-full mr-2"></span>
+                    Reciklētie materiāli
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Железобетон -->
+              <div class="space-y-3">
+                <h4 class="text-lg font-semibold border-b-2 border-accent/30 pb-2">Dzelzsbetons</h4>
+                <ul class="space-y-1 text-base text-gray-600">
+                  <li class="flex items-center">
+                    <span class="w-2 h-2 bg-accent/40 rounded-full mr-2"></span>
+                    Pamatu bloki FBS
+                  </li>
+                  <li class="flex items-center">
+                    <span class="w-2 h-2 bg-accent/40 rounded-full mr-2"></span>
+                    Pārseguma plātnes
+                  </li>
+                  <li class="flex items-center">
+                    <span class="w-2 h-2 bg-accent/40 rounded-full mr-2"></span>
+                    Sijas un joslas
+                  </li>
+                  <li class="flex items-center">
+                    <span class="w-2 h-2 bg-accent/40 rounded-full mr-2"></span>
+                    Kāpņu elementi
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Документы и другое -->
+              <div class="space-y-3">
+                <h4 class="text-lg font-semibold border-b-2 border-accent/30 pb-2">Dokumenti un citi</h4>
+                <ul class="space-y-1 text-base text-gray-600">
+                  <li class="flex items-center">
+                    <span class="w-2 h-2 bg-accent/40 rounded-full mr-2"></span>
+                    Sertifikāti
+                  </li>
+                  <li class="flex items-center">
+                    <span class="w-2 h-2 bg-accent/40 rounded-full mr-2"></span>
+                    Deklarācijas
+                  </li>
+                  <li class="flex items-center">
+                    <span class="w-2 h-2 bg-accent/40 rounded-full mr-2"></span>
+                    Labiekārtošanas elementi
+                  </li>
+                  <li class="flex items-center">
+                    <span class="w-2 h-2 bg-accent/40 rounded-full mr-2"></span>
+                    Individuāli risinājumi
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Кнопки документов -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+              <a href="/docs/certificate.pdf" class="flex items-center p-4 bg-accent/5 rounded-xl hover:bg-accent/10 transition-colors group">
+                <div class="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center mr-4 group-hover:bg-accent/20">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-base font-semibold group-hover:text-accent">Atbilstības sertifikāts</h4>
+                  <p class="text-sm text-gray-600">Betona un būvmateriālu kvalitātes sertifikāts</p>
+                </div>
+              </a>
+              <a href="/docs/declaration.pdf" class="flex items-center p-4 bg-accent/5 rounded-xl hover:bg-accent/10 transition-colors group">
+                <div class="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center mr-4 group-hover:bg-accent/20">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-base font-semibold group-hover:text-accent">Kvalitātes deklarācija</h4>
+                  <p class="text-sm text-gray-600">Produktu īpašību un atbilstības deklarācija</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Партнеры -->
+    <section id="partneri" class="py-24 overflow-hidden bg-gray-50/50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-20 reveal-item">
+          <span class="text-textPrimary">MŪSU</span> <span class="text-accent">PARTNERI</span>
+        </h2>
+        <div class="flex space-x-16 animate-scroll reveal-item delay-300">
+          {[
+            { id: 1, ext: 'png' },
+            { id: 2, ext: 'avif' },
+            { id: 3, ext: 'avif' },
+            { id: 4, ext: 'svg' },
+            { id: 5, ext: 'png' },
+            { id: 6, ext: 'png' }
+          ].map((partner) => (
+            <img 
+              src={`/img/partners/${partner.id}.${partner.ext}`}
+              alt={`Partner ${partner.id}`}
+              class="h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              loading="lazy"
+              onerror="this.style.display='none'"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Наши фото -->
+    <section id="kontakti" class="py-24 bg-gray-100">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Основная информация -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          <!-- Логотип и описание -->
+          <div class="space-y-4 reveal-item">
+            <img 
+              src="/img/block512.png"
+              alt="Betonblock logo"
+              class="w-48 mb-4"
+              loading="lazy"
+            />
+            <p class="text-gray-600 text-sm">
+              Vadošais betona ražotājs Latgalē kopš 2013. gada. Mēs piedāvājam augstas kvalitātes betonu un būvmateriālus visā Latvijā.
+            </p>
+          </div>
+
+          <!-- Контакты -->
+          <div class="reveal-item delay-300">
+            <h3 class="text-lg font-semibold mb-6 text-accent">Kontakti</h3>
+            <ul class="space-y-4">
+              <li class="flex items-center space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span class="text-gray-600">Rīga, Latvia, LV-1010</span>
+              </li>
+              <li class="flex items-center space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <a href="mailto:info@betonblock.lv" class="text-gray-600 hover:text-accent transition-colors">info@betonblock.lv</a>
+              </li>
+              <li class="flex items-center space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <a href="tel:+37120000000" class="text-gray-600 hover:text-accent transition-colors">+371 2000 0000</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Время работы -->
+          <div class="reveal-item delay-500">
+            <h3 class="text-lg font-semibold mb-6 text-accent">Darba laiks</h3>
+            <ul class="space-y-4">
+              <li class="text-gray-600">
+                <span class="block font-medium">Pirmdiena - Piektdiena</span>
+                <span class="text-gray-500">8:00 - 17:00</span>
+              </li>
+              <li class="text-gray-600">
+                <span class="block font-medium">Sestdiena - Svētdiena</span>
+                <span class="text-gray-500">Slēgts</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Реквизиты -->
+          <div class="reveal-item delay-500">
+            <h3 class="text-lg font-semibold mb-6 text-accent">Rekvizīti</h3>
+            <ul class="space-y-4 text-gray-600">
+              <li>
+                <span class="block font-medium">SIA "Betonblock"</span>
+                <span class="block text-gray-500">Reģ. Nr.: 40000000000</span>
+                <span class="block text-gray-500">PVN: LV40000000000</span>
+              </li>
+              <li>
+                <span class="block font-medium">AS "Swedbank"</span>
+                <span class="block text-gray-500">SWIFT: HABALV22</span>
+                <span class="block text-gray-500">LV00HABA0000000000000</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Разделитель -->
+        <div class="border-t border-gray-200 pt-8">
+          <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-center text-gray-500 text-sm">
+              © {new Date().getFullYear()} Betonblock. Visas tiesības aizsargātas.
+            </p>
+            <a 
+              href="https://www.ipx.lv" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="group inline-flex items-center gap-3 py-1.5 px-3 rounded-full border border-gray-200 hover:border-gray-300 transition-all duration-300"
+            >
+              <div class="relative flex items-center gap-2">
+ 
+              
+                <span class="text-gray-400 text-xs tracking-wider uppercase">Izstrādātājs:</span>
+              </div>               <img 
+              src="/img/ipx.svg"
+              alt="IPX.SIA"
+              class="h-5 w-auto transform group-hover:scale-110 transition-transform duration-300"
+              loading="lazy"
+            />  
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </MainLayout>
+
+<style>
+  /* Анимации */
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Анимация прокрутки логотипов */
+  .animate-scroll {
+    animation: scroll 20s linear infinite;
+  }
+
+  .animate-scroll-slow {
+    animation: scroll 30s linear infinite;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease;
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+  }
+
+  .reveal-item.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .delay-300 {
+    transition-delay: 300ms;
+  }
+
+  .delay-500 {
+    transition-delay: 500ms;
+  }
+</style>
+
+<script>
+  function reveal() {
+    const reveals = document.querySelectorAll('.reveal, .reveal-item');
+
+    reveals.forEach((element) => {
+      const windowHeight = window.innerHeight;
+      const elementTop = element.getBoundingClientRect().top;
+      const elementVisible = 150;
+
+      if (elementTop < windowHeight - elementVisible) {
+        element.classList.add('active');
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Добавляем класс reveal ко всем секциям
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section) => {
+      section.classList.add('reveal');
+    });
+
+    // Проверяем видимость при загрузке
+    reveal();
+
+    // Проверяем видимость при скролле
+    window.addEventListener('scroll', reveal);
+  });
+</script>

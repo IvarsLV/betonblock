@@ -1,25 +1,27 @@
 ---
 interface Props {
   href: string;
-  variant?: 'default' | 'primary';
+  variant?: 'default' | 'primary' | 'secondary';
+  className?: string;
 }
 
-const { href, variant = 'default' } = Astro.props;
+const { href, variant = 'default', className = '' } = Astro.props;
 
-// Базовые классы как строка
-const baseClasses: string = 'px-4 py-2 rounded font-medium transition-colors';
+// Базовые классы
+const baseClasses: string = 'px-4 py-2 rounded font-medium transition-colors duration-300';
 
-// Варианты стилей с точной типизацией
+// Варианты стилей
 const variantClasses = {
-  default: 'bg-gray-200 text-gray-900 hover:bg-gray-300',
-  primary: 'bg-orange-600 text-button text-white hover:bg-orange-500',
+  default: 'bg-gray-200 text-gray-800 hover:bg-gray-300',
+  primary: 'bg-accent text-white hover:bg-hoverAccent',
+  secondary: 'bg-white text-gray-800 border border-gray-300 hover:bg-gray-50',
 } as const;
 
 // Тип для variant как ключи variantClasses
 type Variant = keyof typeof variantClasses;
 
 // Комбинируем классы
-const classes: string = `${baseClasses} ${variantClasses[variant]}`;
+const classes: string = `${baseClasses} ${variantClasses[variant as Variant]} ${className}`;
 ---
 
 <a href={href} class={classes}>

@@ -1,0 +1,22 @@
+---
+---
+<script>
+  function scrollToSection(sectionId: string) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Обработка начального URL
+  document.addEventListener('DOMContentLoaded', () => {
+    const path = window.location.pathname;
+    if (path === '/') return;
+    
+    const sectionId = path.replace('/', '');
+    scrollToSection(sectionId);
+    
+    // Очищаем URL без перезагрузки страницы
+    window.history.pushState({}, '', '/');
+  });
+</script> 

@@ -2,20 +2,139 @@
 const { title } = Astro.props;
 import "../styles/global.css";
 import Navbar from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+
+// SEO метаданные
+const description = "Betonblock SIA - производство и доставка бетона высокого качества в Латвии";
+const canonicalURL = Astro.site 
+  ? new URL(Astro.url.pathname, Astro.site)
+  : Astro.url.pathname;
 ---
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="lv" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><slot name="title" /></title>
+  <meta name="description" content={description}>
+  <meta name="theme-color" content="#ffffff">
+  
+  <!-- SEO -->
+  <title>{title} :: Betonblock SIA ::</title>
+  {canonicalURL && <link rel="canonical" href={canonicalURL} />}
+  <meta property="og:title" content={`${title} :: Betonblock SIA ::`} />
+  <meta property="og:description" content={description} />
+  {canonicalURL && <meta property="og:url" content={canonicalURL} />}
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  
+  <!-- Предзагрузка важных ресурсов -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-<body class="flex flex-col min-h-screen bg-[var(--background)] text-[var(--text-primary)]">
+
+<body class="min-h-screen bg-background text-textPrimary antialiased flex flex-col font-sans relative overflow-x-hidden">
+  <!-- Фоновый текст -->
+  <div class="fixed inset-0 pointer-events-none select-none overflow-hidden opacity-[0.03]">
+    <div class="absolute w-full h-full flex flex-col justify-center items-center leading-none">
+      <div class="text-[20rem] md:text-[30rem] font-bold whitespace-nowrap animate-float-left -mb-20 md:-mb-32">
+        <span class="text-accent">BETON</span>
+      </div>
+      <div class="text-[20rem] md:text-[30rem] font-bold whitespace-nowrap animate-float-right">
+        <span class="text-secondary">BLOCK</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Основной контент -->
   <Navbar />
-  <main class="flex-1 container mx-auto px-4 py-8">
+  
+  <div class="flex-grow relative z-10">
     <slot />
-  </main>
-  <Footer />
+  </div>
+
+
+  <!-- Скрипты -->
+  <script>
+    // Плавная прокрутка для якорных ссылок
+    const anchors = document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]');
+    anchors.forEach((anchor: HTMLAnchorElement) => {
+      anchor.addEventListener('click', function(this: HTMLAnchorElement, e: MouseEvent) {
+        e.preventDefault();
+        const href = this.getAttribute('href');
+        if (href) {
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>
+
+<style>
+  /* Оптимизация для больших экранов */
+  @media (min-width: 1536px) {
+    .container {
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  /* Предотвращение FOUC */
+  html {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* Плавные переходы */
+  * {
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  /* Анимации фонового текста */
+  .animate-float-left {
+    animation: floatLeft 20s ease-in-out infinite;
+  }
+
+  .animate-float-right {
+    animation: floatRight 20s ease-in-out infinite;
+  }
+
+  @keyframes floatLeft {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-500px);
+    }
+  }
+
+  @keyframes floatRight {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(500px);
+    }
+  }
+
+  /* Сброс стилей для iOS */
+  input,
+  textarea,
+  button,
+  select,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+</style>
