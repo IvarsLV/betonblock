@@ -53,6 +53,18 @@ import Button from './ui/Button.astro';
 </nav>
 
 <script>
+  const pageTitles = {
+    'par-mums': 'Par mums | Betonblock',
+    'pakalpojumi': 'Pakalpojumi | Betonblock',
+    'materiali': 'Materiāli | Betonblock',
+    'kontakti': 'Kontakti | Betonblock',
+    'home': 'Betonblock | Betona bloku ražošanas iekārtas'
+  };
+
+  function updateTitle(sectionId: string) {
+    document.title = pageTitles[sectionId as keyof typeof pageTitles] || pageTitles.home;
+  }
+
   function scrollToSection(sectionId: string) {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -67,6 +79,7 @@ import Button from './ui/Button.astro';
       });
       
       window.history.pushState({}, '', `/${sectionId}`);
+      updateTitle(sectionId);
     }
   }
 
@@ -76,6 +89,7 @@ import Button from './ui/Button.astro';
       behavior: 'smooth'
     });
     window.history.pushState({}, '', '/');
+    updateTitle('home');
   }
 
   const initApp = () => {
@@ -94,7 +108,10 @@ import Button from './ui/Button.astro';
         const sectionId = path.replace('/', '');
         setTimeout(() => {
           scrollToSection(sectionId);
+          updateTitle(sectionId);
         }, 100);
+      } else {
+        updateTitle('home');
       }
     };
 
@@ -159,9 +176,11 @@ import Button from './ui/Button.astro';
       const path = window.location.pathname;
       if (path === '/') {
         scrollToTop();
+        updateTitle('home');
       } else {
         const sectionId = path.replace('/', '');
         scrollToSection(sectionId);
+        updateTitle(sectionId);
       }
     });
 
