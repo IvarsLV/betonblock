@@ -3,12 +3,13 @@ interface Props {
   href: string;
   variant?: 'default' | 'primary' | 'secondary';
   className?: string;
+  'data-section'?: string;
 }
 
-const { href, variant = 'default', className = '' } = Astro.props;
+const { href, variant = 'default', className = '', 'data-section': dataSection } = Astro.props;
 
 // Базовые классы
-const baseClasses: string = 'px-4 py-2 rounded font-medium transition-colors duration-300';
+const baseClasses: string = 'px-4 py-2 rounded font-medium transition-colors duration-300 cursor-pointer';
 
 // Варианты стилей
 const variantClasses = {
@@ -24,6 +25,6 @@ type Variant = keyof typeof variantClasses;
 const classes: string = `${baseClasses} ${variantClasses[variant as Variant]} ${className}`;
 ---
 
-<a href={href} class={classes}>
+<button type="button" data-section={dataSection} class={classes}>
   <slot />
-</a>
+</button>

@@ -1,12 +1,14 @@
 ---
 import Button from "../components/ui/Button.astro";
-import MainLayout from "../layouts/MainLayout.astro";
+import MainLayout from "../layouts/Layout.astro";
+
+const BASE_URL = import.meta.env.BASE_URL;
 ---
 
 <MainLayout>
   <main class="relative pt-24">
     <!-- Hero секция -->
-    <section id="hero" class="min-h-[calc(100vh-5rem)] py-16 md:py-24 lg:py-32 container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="hero" class="hero-section min-h-[calc(100vh-5rem)] py-16 md:py-24 lg:py-32 container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
         <!-- Текстовый блок -->
         <div class="flex-1 w-full lg:w-1/2 reveal-item">
@@ -19,14 +21,16 @@ import MainLayout from "../layouts/MainLayout.astro";
           </p>
           <div class="flex flex-col sm:flex-row gap-4">
             <Button 
-              href="/kontakti" 
+              href="#"
+              data-section="kontakti"
               variant="primary"
               className="w-full sm:w-auto text-center justify-center"
             >
               Sazinies ar mums
             </Button>
             <Button 
-              href="/pakalpojumi" 
+              href="#"
+              data-section="pakalpojumi"
               variant="secondary"
               className="w-full sm:w-auto text-center justify-center"
             >
@@ -39,7 +43,7 @@ import MainLayout from "../layouts/MainLayout.astro";
         <div class="flex-1 w-full lg:w-1/2 reveal-item delay-300">
           <div class="relative w-full aspect-square lg:aspect-[4/3]">
             <img 
-              src="/img/hero.png" 
+              src={BASE_URL + "/img/hero.png"} 
               alt="Betonblock производство" 
               class="w-full h-full object-cover rounded-lg shadow-xl rotate-0 hover:-rotate-2 transition-transform duration-300"
               width="800"
@@ -62,7 +66,7 @@ import MainLayout from "../layouts/MainLayout.astro";
             <div class="relative">
               <div class="absolute inset-0rounded-lg transform -rotate-3"></div>
               <img 
-                src="/img/block512.png"
+                src={BASE_URL + "/img/block512.png"}
                 alt="Betonblock logo"
                 class="relative w-full max-w-md mx-auto transform rotate-0 transition-transform duration-300 hover:rotate-2"
                 loading="lazy"
@@ -263,7 +267,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 
             <!-- Кнопки документов -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-              <a href="/docs/certificate.pdf" class="flex items-center p-4 bg-accent/5 rounded-xl hover:bg-accent/10 transition-colors group">
+              <a href={BASE_URL + "/docs/certificate.pdf"} class="flex items-center p-4 bg-accent/5 rounded-xl hover:bg-accent/10 transition-colors group">
                 <div class="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center mr-4 group-hover:bg-accent/20">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -274,7 +278,7 @@ import MainLayout from "../layouts/MainLayout.astro";
                   <p class="text-sm text-gray-600">Betona un būvmateriālu kvalitātes sertifikāts</p>
                 </div>
               </a>
-              <a href="/docs/declaration.pdf" class="flex items-center p-4 bg-accent/5 rounded-xl hover:bg-accent/10 transition-colors group">
+              <a href={BASE_URL + "/docs/declaration.pdf"} class="flex items-center p-4 bg-accent/5 rounded-xl hover:bg-accent/10 transition-colors group">
                 <div class="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center mr-4 group-hover:bg-accent/20">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -307,7 +311,7 @@ import MainLayout from "../layouts/MainLayout.astro";
             { id: 6, ext: 'png' }
           ].map((partner) => (
             <img 
-              src={`/img/partners/${partner.id}.${partner.ext}`}
+              src={`${BASE_URL}/img/partners/${partner.id}.${partner.ext}`}
               alt={`Partner ${partner.id}`}
               class="h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300"
               loading="lazy"
@@ -326,7 +330,7 @@ import MainLayout from "../layouts/MainLayout.astro";
           <!-- Логотип и описание -->
           <div class="space-y-4 reveal-item">
             <img 
-              src="/img/block512.png"
+              src={BASE_URL + "/img/block512.png"}
               alt="Betonblock logo"
               class="w-48 mb-4"
               loading="lazy"
@@ -408,15 +412,14 @@ import MainLayout from "../layouts/MainLayout.astro";
               class="group inline-flex items-center gap-3 py-1.5 px-3 rounded-full border border-gray-200 hover:border-gray-300 transition-all duration-300"
             >
               <div class="relative flex items-center gap-2">
- 
-              
                 <span class="text-gray-400 text-xs tracking-wider uppercase">Izstrādātājs:</span>
-              </div>               <img 
-              src="/img/ipx.svg"
-              alt="IPX.SIA"
-              class="h-5 w-auto transform group-hover:scale-110 transition-transform duration-300"
-              loading="lazy"
-            />  
+              </div>               
+              <img 
+                src={BASE_URL + "/img/ipx.svg"}
+                alt="IPX.SIA"
+                class="h-5 w-auto transform group-hover:scale-110 transition-transform duration-300"
+                loading="lazy"
+              />  
             </a>
           </div>
         </div>
@@ -492,6 +495,35 @@ import MainLayout from "../layouts/MainLayout.astro";
 </style>
 
 <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Обработчики для кнопок в hero секции
+    const heroButtons = document.querySelectorAll('.hero-section button[data-section]');
+    heroButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const sectionId = button.getAttribute('data-section');
+        if (sectionId) {
+          const section = document.getElementById(sectionId);
+          if (section) {
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    // Добавляем класс reveal ко всем секциям
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section) => {
+      section.classList.add('reveal');
+    });
+
+    // Проверяем видимость при загрузке
+    reveal();
+
+    // Проверяем видимость при скролле
+    window.addEventListener('scroll', reveal);
+  });
+
   function reveal() {
     const reveals = document.querySelectorAll('.reveal, .reveal-item');
 
@@ -505,18 +537,4 @@ import MainLayout from "../layouts/MainLayout.astro";
       }
     });
   }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    // Добавляем класс reveal ко всем секциям
-    const sections = document.querySelectorAll('section');
-    sections.forEach((section) => {
-      section.classList.add('reveal');
-    });
-
-    // Проверяем видимость при загрузке
-    reveal();
-
-    // Проверяем видимость при скролле
-    window.addEventListener('scroll', reveal);
-  });
 </script>
