@@ -29,11 +29,11 @@ const BASE_URL = import.meta.env.BASE_URL;
            after:transition-all after:duration-300 z-50"></div>
         </button>
         <ul class="md:flex space-x-10 hidden" role="menubar">
-          <li role="none"><a href="/" class="hover:text-hoverAccent transition-colors duration-300 focus:outline-none " role="menuitem">Sākums</a></li>
-          <li role="none"><a href="/par-mums" class="hover:text-hoverAccent transition-colors duration-300 focus:outline-none " role="menuitem">Par mums</a></li>
-          <li role="none"><a href="/pakalpojumi" class="hover:text-hoverAccent transition-colors duration-300 focus:outline-none  " role="menuitem">Pakalpojumi</a></li>
-          <li role="none"><a href="/materiali" class="hover:text-hoverAccent transition-colors duration-300 focus:outline-none  " role="menuitem">Materiāli</a></li>
-          <li role="none"><a href="/kontakti" class="hover:text-hoverAccent transition-colors duration-300 focus:outline-none  " role="menuitem">Kontakti</a></li>
+          <li role="none"><a href={BASE_URL + "/"} class="hover:text-hoverAccent transition-colors duration-300 focus:outline-none " role="menuitem">Sākums</a></li>
+          <li role="none"><a href={BASE_URL + "/par-mums"} class="hover:text-hoverAccent transition-colors duration-300 focus:outline-none " role="menuitem">Par mums</a></li>
+          <li role="none"><a href={BASE_URL + "/pakalpojumi"} class="hover:text-hoverAccent transition-colors duration-300 focus:outline-none  " role="menuitem">Pakalpojumi</a></li>
+          <li role="none"><a href={BASE_URL + "/materiali"} class="hover:text-hoverAccent transition-colors duration-300 focus:outline-none  " role="menuitem">Materiāli</a></li>
+          <li role="none"><a href={BASE_URL + "/kontakti"} class="hover:text-hoverAccent transition-colors duration-300 focus:outline-none  " role="menuitem">Kontakti</a></li>
         </ul>
       </nav>
     </div>
@@ -62,27 +62,27 @@ const BASE_URL = import.meta.env.BASE_URL;
     <div class="flex-1 overflow-y-auto py-8">
       <ul class="flex flex-col items-stretch justify-start space-y-2" role="menu">
         <li role="none" class="border-b border-gray-100">
-          <a href="/" 
+          <a href={BASE_URL + "/"} 
             class="block w-full text-center py-8 text-3xl font-medium hover:text-accent transition-colors duration-300 hover:bg-accent/5" 
             role="menuitem">Sākums</a>
         </li>
         <li role="none" class="border-b border-gray-100">
-          <a href="/par-mums" 
+          <a href={BASE_URL + "/par-mums"} 
             class="block w-full text-center py-8 text-3xl font-medium hover:text-accent transition-colors duration-300 hover:bg-accent/5" 
             role="menuitem">Par mums</a>
         </li>
         <li role="none" class="border-b border-gray-100">
-          <a href="/pakalpojumi" 
+          <a href={BASE_URL + "/pakalpojumi"} 
             class="block w-full text-center py-8 text-3xl font-medium hover:text-accent transition-colors duration-300 hover:bg-accent/5" 
             role="menuitem">Pakalpojumi</a>
         </li>
         <li role="none" class="border-b border-gray-100">
-          <a href="/materiali" 
+          <a href={BASE_URL + "/materiali"} 
             class="block w-full text-center py-8 text-3xl font-medium hover:text-accent transition-colors duration-300 hover:bg-accent/5" 
             role="menuitem">Materiāli</a>
         </li>
         <li role="none" class="border-b border-gray-100">
-          <a href="/kontakti"
+          <a href={BASE_URL + "/kontakti"} 
             class="block w-full text-center py-8 text-3xl font-medium hover:text-accent transition-colors duration-300 hover:bg-accent/5" 
             role="menuitem">Kontakti</a>
         </li>
@@ -157,22 +157,22 @@ const BASE_URL = import.meta.env.BASE_URL;
   }
 
   function scrollToSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      const header = document.querySelector('header');
-      const headerHeight = header ? header.offsetHeight : 0;
-      const sectionPosition = section.getBoundingClientRect().top + window.pageYOffset;
-      const extraPadding = 32;
-      
-      window.scrollTo({
-        top: sectionPosition - headerHeight - extraPadding,
-        behavior: 'smooth'
-      });
-      
-      window.history.pushState({}, '', BASE_URL + `/${sectionId}`);
-      updateTitle(sectionId);
-    }
+  const section = document.getElementById(sectionId);
+  if (section) {
+    const header = document.querySelector('header');
+    const headerHeight = header ? header.offsetHeight : 0;
+    const sectionPosition = section.getBoundingClientRect().top + window.scrollY;
+    const extraPadding = 20;
+
+    window.scrollTo({
+      top: sectionPosition - headerHeight - extraPadding,
+      behavior: 'smooth'
+    });
+
+    history.pushState({}, '', `/#${sectionId}`); // Без BASE_URL
+    updateTitle(sectionId);
   }
+}
 
   function scrollToTop() {
     window.scrollTo({
