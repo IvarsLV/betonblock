@@ -8,7 +8,7 @@ const BASE_URL = import.meta.env.BASE_URL;
 <MainLayout title="Galvenā">
   <main class="relative pt-24">
     <!-- Hero секция -->
-    <section id="hero" class="hero-section min-h-[calc(100vh-5rem)] py-16 md:py-24 lg:py-32 container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="hero" class="hero-section h-full md:min-h-[calc(100vh-5rem)] py-8 md:py-24 lg:py-32 container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
         <!-- Текстовый блок -->
         <div class="flex-1 w-full lg:w-1/2 reveal-item">
@@ -45,7 +45,7 @@ const BASE_URL = import.meta.env.BASE_URL;
             <img 
               src="/img/hero.png" 
               alt="Betonblock" 
-              class="w-full h-full object-cover rounded-lg shadow-xl rotate-0 hover:-rotate-2 transition-transform duration-300"
+              class="w-full md:h-full  object-cover rounded-lg shadow-xl rotate-0 hover:-rotate-2 transition-transform duration-300"
               width="800"
               height="600"
               loading="eager"
@@ -348,11 +348,11 @@ const BASE_URL = import.meta.env.BASE_URL;
         <!-- Основная информация -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:mb-12 mb-6">
           <!-- Логотип и описание -->
-          <div class="space-y-4 flex flex-row reveal-item md:row-start-1 row-start-4">
+          <div class="space-y-4 flex flex-row lg:flex-col justify-center items-center reveal-item md:row-start-1 row-start-4">
             <img 
               src="/img/block512.png"
               alt="Betonblock logo"
-              class=" max-w-24 lg:w-48 mb-4"
+              class=" max-w-24 h-auto mb-4"
               loading="lazy"
             />
             <p class="text-gray-600 flex items-center text-sm ml-3">
