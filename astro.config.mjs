@@ -5,8 +5,9 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://betonblock.lv',
+  base: '/',
   build: {
-    assets: 'assets'
+    assets: 'public'
   },
   integrations: [tailwind()],
   vite: {

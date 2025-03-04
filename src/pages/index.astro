@@ -43,8 +43,8 @@ const BASE_URL = import.meta.env.BASE_URL;
         <div class="flex-1 w-full lg:w-1/2 reveal-item delay-300">
           <div class="relative w-full aspect-square lg:aspect-[4/3]">
             <img 
-              src={BASE_URL + "/img/hero.png"} 
-              alt="Betonblock производство" 
+              src="/img/hero.png" 
+              alt="Betonblock" 
               class="w-full h-full object-cover rounded-lg shadow-xl rotate-0 hover:-rotate-2 transition-transform duration-300"
               width="800"
               height="600"
@@ -66,7 +66,7 @@ const BASE_URL = import.meta.env.BASE_URL;
             <div class="relative">
               <div class="absolute inset-0rounded-lg transform -rotate-3"></div>
               <img 
-                src={BASE_URL + "/img/block512.png"}
+                src="/img/block512.png"
                 alt="Betonblock logo"
                 class="relative w-full max-w-xs mx-auto md:max-w-sm lg:max-w-md transform rotate-0 transition-transform duration-300 hover:rotate-2"
                 loading="lazy"
@@ -331,7 +331,7 @@ const BASE_URL = import.meta.env.BASE_URL;
             { id: 6, ext: 'png' }
           ].map((partner) => (
             <img 
-              src={`${BASE_URL}/img/partners/${partner.id}.${partner.ext}`}
+              src={`/img/partners/${partner.id}.${partner.ext}`}
               alt={`Partner ${partner.id}`}
               class="h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300"
               loading="lazy"
@@ -350,7 +350,7 @@ const BASE_URL = import.meta.env.BASE_URL;
           <!-- Логотип и описание -->
           <div class="space-y-4 flex flex-row reveal-item md:row-start-1 row-start-4">
             <img 
-              src={BASE_URL + "/img/block512.png"}
+              src="/img/block512.png"
               alt="Betonblock logo"
               class=" max-w-24 lg:w-48 mb-4"
               loading="lazy"
@@ -441,7 +441,7 @@ const BASE_URL = import.meta.env.BASE_URL;
                 <span class="text-gray-400 text-xs tracking-wider uppercase">Izstrādātājs:</span>
               </div>               
               <img 
-                src={BASE_URL + "/img/ipx.svg"}
+                src="/img/ipx.svg"
                 alt="IPX.SIA"
                 class="h-5 w-auto transform group-hover:scale-110 transition-transform duration-300"
                 loading="lazy"
